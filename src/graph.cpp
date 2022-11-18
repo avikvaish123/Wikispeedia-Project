@@ -1,6 +1,6 @@
 #include "graph.hpp"
 
-// #include <algorithm>
+#include <algorithm>
 
 using namespace std;
 
@@ -88,6 +88,61 @@ void Graph::initialize_graph()
     fstre.close();
 
     fstream.close();
+}
+
+vector<string> Graph::bfs(Node* startingNode, Node* endingNode) {
+    queue<Node*> queue;
+    queue.push(startingNode);
+
+    map<string, bool> visited;
+    for (size_t i = 0; i < vertices.size(); i++) {
+        visited[vertices.at(i)->article_] = false;
+    }
+    visited.insert_or_assign(startingNode->article_, true);
+
+    map<string, string> previous;
+    for (size_t i = 0; i < vertices.size(); i++) {
+        previous[vertices.at(i)->article_] = "";
+    }
+
+    while (!queue.empty()) {
+        Node* current = queue.front();
+        queue.pop();
+        Node* neighbor = current->next_;
+
+        while (neighbor != NULL) {
+
+            if (!visited.at(neighbor->article_)) {
+                queue.push(getEdges(neighbor->article_));
+                visited.insert_or_assign(neighbor->article_, true);
+                previous.insert_or_assign(neighbor->article_, current->article_);
+            }
+            neighbor = neighbor->next_;
+        }
+    }
+
+    vector<string> path;
+    string current = endingNode->article_;
+    while (!current.empty()) {
+        path.push_back(current);
+        current = previous.at(current);
+    }
+    std::reverse(path.begin(), path.end());
+    if (path.at(0) == startingNode->article_) {
+        return path;
+    }
+    path.clear();
+    return path;
+}
+
+Graph::Node* Graph::getEdges(string article) {
+    for (size_t i = 0; i < vertices.size(); i++) {
+        if (vertices.at(i)->article_ == article) {
+            return vertices.at(i);
+        }
+    }
+    Node* temp = new Node();
+    return temp;
 }
 
 vector<Graph::Node *> Graph::getVertices()
