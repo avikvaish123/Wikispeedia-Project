@@ -11,10 +11,31 @@
 
 using namespace std;
 
+TEST_CASE("Load Graph", "[weight=1][part=1]") {
+    Graph graph("tests/testNodes.tsv", "tests/testLinks.tsv");
+
+    graph.initialize_graph();
+
+    REQUIRE(graph.getVertices().at(0) != NULL);
+}
+
+TEST_CASE("Test Graph for Edges", "[weight=1][part=1]") {
+    Graph graph("tests/testNodes.tsv", "tests/testLinks.tsv");
+
+    graph.initialize_graph();
+
+    Graph::Node* testNode = graph.getVertices().at(0);
+
+    while(testNode->article_ != "NodeC" && testNode->next_ != NULL) {
+        testNode = testNode->next_;
+    }
+
+    REQUIRE(testNode->article_ == "NodeC");
+}
+
 TEST_CASE("Simple BFS", "[weight=1][part=1]") {
     Graph graph("tests/testNodes.tsv", "tests/testLinks.tsv");
 
-    //initalize edges using adjacency list
     graph.initialize_graph();
 
     vector<Graph::Node*> vertices = graph.getVertices();
