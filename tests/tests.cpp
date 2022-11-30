@@ -1,5 +1,4 @@
 #include "catch.hpp"
-#include "catchmain.cpp"
 #include <iostream>
 #include <fstream>
 #include <ctype.h>
@@ -7,7 +6,7 @@
 #include <utility>
 #include <cmath>
 
-#include "../src/graph.cpp"
+#include "graph.hpp"
 
 using namespace std;
 
@@ -16,7 +15,7 @@ TEST_CASE("Load Graph", "[weight=1][part=1]") {
 
     graph.initialize_graph();
 
-    REQUIRE(graph.getVertices().at(0) != NULL);
+    REQUIRE(graph.getVertices().size() == 6);
 }
 
 TEST_CASE("Test Graph for Edges", "[weight=1][part=1]") {
@@ -31,6 +30,14 @@ TEST_CASE("Test Graph for Edges", "[weight=1][part=1]") {
     }
 
     REQUIRE(testNode->article_ == "NodeC");
+}
+
+TEST_CASE("Empty Graph BFS", "[weight=1][part=1]") {
+    Graph graph("tests/empty.tsv", "tests/empty.tsv");
+
+    graph.initialize_graph();
+
+
 }
 
 TEST_CASE("Simple BFS", "[weight=1][part=1]") {
