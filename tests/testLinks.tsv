@@ -1,0 +1,6 @@
+NodeA   NodeB
+NodeA   NodeC
+NodeB   NodeD
+NodeC   NodeE
+NodeC   NodeF
+NodeF   NodeA
