@@ -4,7 +4,7 @@ Brandes::Brandes() {
 
 }
 
-string Brandes::calculate(Graph graph) {
+map<string, int> Brandes::calculate(Graph graph) {
     vector<Graph::Node*> vertices = graph.getVertices();
 
     map<string, int> visited;
@@ -13,10 +13,10 @@ string Brandes::calculate(Graph graph) {
     }
 
     for (size_t i = 0; i < vertices.size() - 1; i++) {
-        for (size_t j = 1; j < vertices.size(); j++) {
+        for (size_t j = 1 + i; j < vertices.size(); j++) {
             Graph::Node* starting = vertices.at(i);
             Graph::Node* ending = vertices.at(j);
-            cout << "Test: " << starting->article_ << " -> " << ending->article_ << endl;
+            cout << "Vertex " << i << " Test " << j << " : " << starting->article_ << " -> " << ending->article_ << endl;
             vector<string> shortest_path = graph.bfs(starting, ending);
             if (shortest_path.size() == 0) {
                 continue;
@@ -24,9 +24,9 @@ string Brandes::calculate(Graph graph) {
             for (size_t k = 1; k < shortest_path.size() - 1; k++) {
                 string current_article = shortest_path.at(k);
                 visited[current_article] = visited[current_article] + 1;
-                cout << "\t" << current_article << " " << visited[current_article] << endl;
+                cout << "\t\t" << current_article << " " << visited[current_article] << endl;
             }
         }
     }
-    return "working";
+    return visited;
 }

@@ -10,7 +10,7 @@ public:
     
     Brandes();
 
-    string calculate(Graph graph);
+    map<string, int> calculate(Graph graph);
 
 private:
 };
