@@ -35,4 +35,7 @@ private:
     string relative_path_of_edges;
 
     vector<Node *> vertices;
+
+    void dfs();
+    Graph transpose();
 };
