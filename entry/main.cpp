@@ -36,7 +36,7 @@ int main()
     vec.push_back(make_pair(it2->first, it2->second));
   }
 
-  sort(vec.begin(), vec.end(), sortByVal); 
+  // sort(vec.begin(), vec.end(), sortByVal);
 
   std::ofstream outfile;
 

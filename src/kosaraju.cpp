@@ -6,6 +6,6 @@ Kosaraju::Kosaraju () {
 
 }
 
-vector<vector<Graph::Node>> Kosaraju::kosaraju(Graph g) {
-
-}
+// vector<vector<Graph::Node>> Kosaraju::kosaraju(Graph g) {
+    
+// }

@@ -11,7 +11,7 @@ public:
     
     Kosaraju();
 
-   vector<vector<string>> kosaraju(Graph g);
+//    vector<vector<Graph::Node>> kosaraju(Graph g);
 
 private:
 };

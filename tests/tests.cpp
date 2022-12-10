@@ -1,4 +1,4 @@
-#include "catch.hpp"
+#include <catch2/catch_test_macros.hpp>
 #include <iostream>
 #include <fstream>
 #include <ctype.h>
@@ -36,8 +36,6 @@ TEST_CASE("Empty Graph BFS", "[weight=1][part=1]") {
     Graph graph("tests/empty.tsv", "tests/empty.tsv");
 
     graph.initialize_graph();
-
-
 }
 
 TEST_CASE("Simple BFS", "[weight=1][part=1]") {
