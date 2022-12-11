@@ -36,6 +36,9 @@ private:
 
     vector<Node *> vertices;
 
-    void dfs();
+    int getIndex(Node* node);
+
+    void dfs(Node* start, vector<bool>& visited);
+    void fillOrder();
     Graph transpose();
 };
