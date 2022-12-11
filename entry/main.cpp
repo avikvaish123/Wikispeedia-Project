@@ -52,20 +52,27 @@ int main()
 	// 	outfile << vec[i].first << ": " << vec[i].second << endl;
 	// }
 
-  Graph testGraph("../tests/kosa_vert.tsv", "../tests/kosa_edges.tsv");
+  // Graph testGraph("../tests/kosa_vert.tsv", "../tests/kosa_edges.tsv");
+  // Graph testGraphTrans("../tests/kosa_vert.tsv", "../tests/kosa_edges.tsv");
 
-    testGraph.initialize_graph();
+  Graph testGraph("../dataset/articles.tsv", "../dataset/links.tsv");
+  Graph testGraphTrans("../dataset/articles.tsv", "../dataset/links.tsv");
 
-    Kosaraju k;
-    vector<vector<string>> sccs = k.kosaraju(testGraph);
+  testGraph.initialize_graph();
+  testGraphTrans.transpose_graph();
 
-    for (size_t i = 0; i < sccs.size(); i++) {
-        cout << "SCC " << i << ": " ;
-        for (size_t j = 0; j <sccs[i].size(); j++) {
-            cout << sccs[i][j] << ", ";
-        }
-        cout << endl;
+
+  Kosaraju k;
+  vector<vector<string>> sccs = k.kosaraju(testGraph, testGraphTrans);
+
+
+  for (size_t i = 0; i < sccs.size(); i++) {
+    cout << "SCCS: {";
+    for (size_t j = 0; j < sccs.at(i).size(); j++) {
+      cout << sccs.at(i).at(j) << + ", ";
     }
+    cout << "}" << endl;
+  }
 
   return 0;
 }

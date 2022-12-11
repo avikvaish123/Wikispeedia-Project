@@ -20,6 +20,7 @@ public:
 
     Graph(string path_of_vertices, string path_of_edges);
     void initialize_graph();
+    void transpose_graph();
 
     vector<string> bfs(Node* startingNode, Node* endingNode);
 

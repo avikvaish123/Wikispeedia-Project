@@ -4,6 +4,7 @@
 #include <string>
 #include <stack>
 #include <unordered_map>
+#include <list>
 
 using namespace std;
 
@@ -12,10 +13,10 @@ public:
 
     Kosaraju();
 
-    vector<vector<string>> kosaraju(Graph g);
-    void cft(const string& u, const vector<Graph::Node*> vertices, unordered_map<string, bool>& visited, stack<string> stack);
-    Graph transpose(Graph g);
-    void dfs(const string& u, const vector<Graph::Node*> vertices, unordered_map<string, bool>& visited, vector<string> scc);
+    unordered_map<string, vector<string>> convert(Graph g);
+    vector<vector<string>> kosaraju(Graph graph, Graph tranposed);
+    void cft(const string& u, unordered_map<string, vector<string>> graph, unordered_map<string, bool>& visited, stack<string>& stack);
+    void dfs(const string& u, const unordered_map<string, vector<string>> graph, unordered_map<string, bool>& visited, vector<string>& scc);
 
 private:
 };
