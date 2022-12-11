@@ -26,9 +26,9 @@ public:
 
     vector<Node *> getVertices();
     void printGraph();
+    void push_back(Node *head, string article);
 
 private:
-    void push_back(Node *head, string article);
     Node* getEdges(string article);
 
     string relative_path_of_vertices;
@@ -37,8 +37,4 @@ private:
     vector<Node *> vertices;
 
     int getIndex(Node* node);
-
-    // void dfs(Node* start, vector<bool>& visited);
-    // void fillOrder();
-    // Graph transpose();
 };
