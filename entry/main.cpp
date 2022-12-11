@@ -51,24 +51,28 @@ int main()
 	// 	outfile << vec[i].first << ": " << vec[i].second << endl;
 	// }
 
-  // Graph::Node* startingNode;
-  // Graph::Node* endingNode;
-  // for (size_t i = 0; i < vertices.size(); i++) {
-  //   //Starting Node
-  //   if (vertices.at(i)->article_ == "Achilles_tendon") {
-  //     startingNode = vertices.at(i);
-  //   }
-  //   //Ending Node
-  //   if (vertices.at(i)->article_ == "Donald_Duck") {
-  //     endingNode = vertices.at(i);
-  //   }
-  // }
+  Graph::Node* startingNode;
+  Graph::Node* endingNode;
+  for (size_t i = 0; i < vertices.size(); i++) {
+    //Starting Node
+    if (vertices.at(i)->article_ == "Achilles_tendon") {
+      startingNode = vertices.at(i);
+    }
+    //Ending Node
+    if (vertices.at(i)->article_ == "Donald_Duck") {
+      endingNode = vertices.at(i);
+    }
+  }
 
-  // vector<string> path = graph.bfs(startingNode, endingNode);
-  // for (size_t i = 0; i < path.size(); i++) {
-  //   cout << path.at(i) << " -> ";
-  // }
-  // cout << endl;
+  vector<string> path = graph.bfs(startingNode, endingNode);
+  for (size_t i = 0; i < path.size(); i++) {
+    cout << path.at(i);
+    if (i < path.size() - 1) {
+      cout << " -> ";
+    }
+  }
+  cout << endl;
+  cout << vertices.size() << endl;
 
   // graph.printGraph();
 

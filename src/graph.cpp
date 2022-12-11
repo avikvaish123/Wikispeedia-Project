@@ -204,27 +204,27 @@ void Graph::push_back(Node *head, string article)
 //     return ret;
 // }
 
-void Graph::dfs(Node* start, vector<bool>& visited) {
-    visited[getIndex(start)] = true;
-    cout << start->article_ << ", ";
+// void Graph::dfs(Node* start, vector<bool>& visited) {
+//     visited[getIndex(start)] = true;
+//     cout << start->article_ << ", ";
 
-    Node* current = start->next_;
-    while (current != NULL) {
-        if (!visited[getIndex(current)]) {
-            dfs(current, visited);
-        }
-    }
-}
+//     Node* current = start->next_;
+//     while (current != NULL) {
+//         if (!visited[getIndex(current)]) {
+//             dfs(current, visited);
+//         }
+//     }
+// }
 
-int Graph::getIndex(Node* node) {
-    auto it = find(vertices.begin(), vertices.end(), node);
-    if (it != vertices.end()) {
-        return it - vertices.begin();
-    }   
-    return -1;
-}
+// int Graph::getIndex(Node* node) {
+//     auto it = find(vertices.begin(), vertices.end(), node);
+//     if (it != vertices.end()) {
+//         return it - vertices.begin();
+//     }   
+//     return -1;
+// }
 
-void fillOrder() {
+// void fillOrder() {
     
-}
+// }
 

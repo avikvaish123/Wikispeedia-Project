@@ -5,9 +5,12 @@ Wikispeedia from Stanford: http://snap.stanford.edu/data/wikispeedia.html
 To run the code in VSCode:
 
 1. Go to the parent directory
-2. Type "make"
-3. Type "./main"
-4. To run tests, type "./test"
+2. Type "mkdir build"
+3. Type "cd build"
+4. Type "cmake .."
+5. Type "make"
+6. Type "./main"
+7. To run tests, type "./test"
 
 TODOs right now:
 

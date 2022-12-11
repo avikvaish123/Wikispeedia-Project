@@ -11,12 +11,12 @@
 using namespace std;
 
 TEST_CASE("Load Graph", "[weight=1][part=1]") {
-    Graph graph("../tests/testNodes.tsv", "../tests/testLinks.tsv");
+    Graph testGraph("../tests/testNodes.tsv", "../tests/testLinks.tsv");
 
-    graph.initialize_graph();
-    // graph.printGraph();
+    testGraph.initialize_graph();
+    testGraph.printGraph();
 
-    REQUIRE(graph.getVertices().size() == 6);
+    REQUIRE(testGraph.getVertices().size() == 6);
 }
 
 TEST_CASE("Test Graph for Edges", "[weight=1][part=1]") {
