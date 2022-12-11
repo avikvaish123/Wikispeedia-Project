@@ -16,9 +16,6 @@ void Graph::initialize_graph() {
     int index = 0;
     while (getline(fstream, line)) {
         line_number++;
-        if (line_number < 13) {
-            continue;
-        }
         size_t vertex_index = line.find('\t');
         string article = line.substr(0, vertex_index);
         string edge = line.substr(vertex_index + 1);
@@ -55,9 +52,6 @@ void Graph::initialize_graph() {
     line_number = 0;
     while (getline(fstre, line2)) {
         line_number++;
-        if (line_number < 13) {
-            continue;
-        }
         bool found = false;
         for (size_t i = 0; i < vertices.size(); i++) {
             if (line2 == vertices.at(i)->article_) {

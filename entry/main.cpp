@@ -62,9 +62,13 @@ int main()
 
   vector<string> path = graph.bfs(startingNode, endingNode);
   for (size_t i = 0; i < path.size(); i++) {
-    cout << path.at(i) << " -> ";
+    cout << path.at(i);
+    if (i < path.size() - 1) {
+      cout << " -> ";
+    }
   }
   cout << endl;
+  cout << vertices.size() << endl;
 
   // graph.printGraph();
 
