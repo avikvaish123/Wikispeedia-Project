@@ -11,14 +11,9 @@ Graph::Graph(string path_of_vertices, string path_of_edges) {
 void Graph::initialize_graph() {
     ifstream fstream(relative_path_of_edges);
     string line;
-    int line_number = 0;
     string head_article = "";
     int index = 0;
     while (getline(fstream, line)) {
-        line_number++;
-        if (line_number < 13) {
-            continue;
-        }
         if (line[line.length() - 1] == '\r') {
             line.pop_back();
         }
@@ -26,8 +21,6 @@ void Graph::initialize_graph() {
 
         string article = line.substr(0, vertex_index);
         string edge = line.substr(vertex_index + 1);
-
-
 
         if (head_article.empty()) {
             head_article = article;
@@ -58,12 +51,7 @@ void Graph::initialize_graph() {
 
     ifstream fstre(relative_path_of_vertices);
     string line2;
-    line_number = 0;
     while (getline(fstre, line2)) {
-        line_number++;
-        if (line_number < 13) {
-            continue;
-        }
         if (line2[line2.length() - 1] == '\r') {
             line2.pop_back();
         }
