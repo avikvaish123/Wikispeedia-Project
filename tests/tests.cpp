@@ -9,13 +9,15 @@
 
 #include "graph.hpp"
 #include "brandes.hpp"
+#include "kosaraju.hpp"
 
 using namespace std;
 
 TEST_CASE("Load Graph", "[weight=1][part=1]") {
-    Graph testGraph("../tests/brandes_vert.tsv", "../tests/brandes_edges.tsv");
+    Graph testGraph("../tests/kosa_vert.tsv", "../tests/kosa_edges.tsv");
 
     testGraph.initialize_graph();
+    testGraph.printGraph();
 
     REQUIRE(testGraph.getVertices().size() == 6);
 }

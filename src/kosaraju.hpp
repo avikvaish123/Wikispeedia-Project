@@ -9,7 +9,7 @@ using namespace std;
 
 class Kosaraju {
 public:
-    
+
     Kosaraju();
 
     vector<vector<string>> kosaraju(Graph g);

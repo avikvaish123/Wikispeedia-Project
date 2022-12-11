@@ -2,12 +2,11 @@
 
 using namespace std;
 
-
-Kosaraju::Kosaraju () {
+Kosaraju::Kosaraju() {
 
 }
 
-void cft(const string& u, const vector<Graph::Node*> vertices, unordered_map<string, bool>& visited, stack<string> stack) {
+void Kosaraju::cft(const string& u, const vector<Graph::Node*> vertices, unordered_map<string, bool>& visited, stack<string> stack) {
     visited[u] = true;
     for (size_t i = 0; i < vertices.size(); i++) {
         if (vertices.at(i)->article_ == u && !visited[vertices.at(i)->next_->article_]) {
@@ -17,7 +16,7 @@ void cft(const string& u, const vector<Graph::Node*> vertices, unordered_map<str
     stack.push(u);
 }
 
-Graph transpose(Graph g) {
+Graph Kosaraju::transpose(Graph g) {
     //traverse through all the vertices
     Graph ret("","");
     vector<Graph::Node*> vertices = g.getVertices();
@@ -39,7 +38,7 @@ Graph transpose(Graph g) {
     return ret;
 }
 
-void dfs(const string& u, const vector<Graph::Node*> vertices, unordered_map<string, bool>& visited, vector<string> scc) {
+void Kosaraju::dfs(const string& u, const vector<Graph::Node*> vertices, unordered_map<string, bool>& visited, vector<string> scc) {
     visited[u] = true;
     scc.push_back(u);
     for (size_t i = 0; i < vertices.size(); i++) {
@@ -49,18 +48,22 @@ void dfs(const string& u, const vector<Graph::Node*> vertices, unordered_map<str
     }
 }
 
-vector<vector<string>> kosaraju(Graph g) {
+vector<vector<string>> Kosaraju::kosaraju(Graph g) {
     stack<string> stack;
     unordered_map<string, bool> visited;
+    cout << "REACHED " << __LINE__ << endl;
     vector<Graph::Node*> vertices = g.getVertices();
     for (size_t i = 0; i < vertices.size(); i++) {
         if (!visited[vertices.at(i)->article_]) {
             cft(vertices.at(i)->article_, vertices, visited, stack);
         }
     }
+    cout << "REACHED " << __LINE__ << endl;
     Graph reverse = transpose(g);
+    cout << "REACHED " << __LINE__ << endl;
     visited.clear();
     vector<vector<string>> sccs;
+    cout << "REACHED " << __LINE__ << endl;
     while(!stack.empty()) {
         string i = stack.top();
         stack.pop();
@@ -68,7 +71,9 @@ vector<vector<string>> kosaraju(Graph g) {
             vector<string> scc;
             dfs(i, reverse.getVertices(), visited, scc);
             sccs.push_back(scc);
+            cout << "REACHED " << __LINE__ << endl;
         }
     }
+    cout << "REACHED " << __LINE__ << endl;
     return sccs;
 }
