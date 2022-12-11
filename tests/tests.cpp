@@ -14,7 +14,6 @@ TEST_CASE("Load Graph", "[weight=1][part=1]") {
     Graph testGraph("../tests/testNodes.tsv", "../tests/testLinks.tsv");
 
     testGraph.initialize_graph();
-    testGraph.printGraph();
 
     REQUIRE(testGraph.getVertices().size() == 6);
 }
