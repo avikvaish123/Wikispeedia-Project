@@ -11,15 +11,16 @@
 using namespace std;
 
 TEST_CASE("Load Graph", "[weight=1][part=1]") {
-    Graph graph("tests/testNodes.tsv", "tests/testLinks.tsv");
+    Graph graph("../tests/testNodes.tsv", "../tests/testLinks.tsv");
 
     graph.initialize_graph();
+    // graph.printGraph();
 
     REQUIRE(graph.getVertices().size() == 6);
 }
 
 TEST_CASE("Test Graph for Edges", "[weight=1][part=1]") {
-    Graph graph("tests/testNodes.tsv", "tests/testLinks.tsv");
+    Graph graph("../tests/testNodes.tsv", "../tests/testLinks.tsv");
 
     graph.initialize_graph();
 
@@ -33,13 +34,13 @@ TEST_CASE("Test Graph for Edges", "[weight=1][part=1]") {
 }
 
 TEST_CASE("Empty Graph BFS", "[weight=1][part=1]") {
-    Graph graph("tests/empty.tsv", "tests/empty.tsv");
+    Graph graph("../tests/empty.tsv", "../tests/empty.tsv");
 
     graph.initialize_graph();
 }
 
 TEST_CASE("Simple BFS", "[weight=1][part=1]") {
-    Graph graph("tests/testNodes.tsv", "tests/testLinks.tsv");
+    Graph graph("../tests/testNodes.tsv", "../tests/testLinks.tsv");
 
     graph.initialize_graph();
 

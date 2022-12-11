@@ -19,9 +19,15 @@ void Graph::initialize_graph() {
         if (line_number < 13) {
             continue;
         }
+        if (line[line.length() - 1] == '\r') {
+            line.pop_back();
+        }
         size_t vertex_index = line.find('\t');
+
         string article = line.substr(0, vertex_index);
         string edge = line.substr(vertex_index + 1);
+
+
 
         if (head_article.empty()) {
             head_article = article;
@@ -57,6 +63,9 @@ void Graph::initialize_graph() {
         line_number++;
         if (line_number < 13) {
             continue;
+        }
+        if (line2[line2.length() - 1] == '\r') {
+            line2.pop_back();
         }
         bool found = false;
         for (size_t i = 0; i < vertices.size(); i++) {
@@ -167,33 +176,33 @@ void Graph::push_back(Node *head, string article)
     current->next_ = temp;
 }
 
-Graph Graph::transpose() {
-    Graph ret();
-    for (size_t i = 0; i < this->vertices.size(); i++) {
-        //create a temp node with the vertex name
-        Node *temp = new Node();
-        temp->article_ = this->vertices.at(i)->article_;
-        //traverse through the rest of the vertices
-        for (size_t j = 0; j < this->vertices.size(); j++) {
-            if (i == j) {
-                continue;
-            }
-            //traverse through the neighbors of the other vertices
-            Node* current = this->vertices.at(j)->next_;
-            while (current != NULL) {
-                //if the temp node is a neighbor of one of the vertices
-                //add the vertex to the neighbors of the temp node
-                if (current->article_ == temp->article_) {
-                    push_back(temp, current->article_);
-                    break;
-                }
-            }
-        }
-        //after adding all the neighbors, repeat for every vertex in the graph
-        ret.vertices.push_back(temp);
-    }
-    return ret;
-}
+// Graph Graph::transpose() {
+//     Graph ret();
+//     for (size_t i = 0; i < this->vertices.size(); i++) {
+//         //create a temp node with the vertex name
+//         Node *temp = new Node();
+//         temp->article_ = this->vertices.at(i)->article_;
+//         //traverse through the rest of the vertices
+//         for (size_t j = 0; j < this->vertices.size(); j++) {
+//             if (i == j) {
+//                 continue;
+//             }
+//             //traverse through the neighbors of the other vertices
+//             Node* current = this->vertices.at(j)->next_;
+//             while (current != NULL) {
+//                 //if the temp node is a neighbor of one of the vertices
+//                 //add the vertex to the neighbors of the temp node
+//                 if (current->article_ == temp->article_) {
+//                     push_back(temp, current->article_);
+//                     break;
+//                 }
+//             }
+//         }
+//         //after adding all the neighbors, repeat for every vertex in the graph
+//         ret.vertices.push_back(temp);
+//     }
+//     return ret;
+// }
 
 void Graph::dfs(Node* start, vector<bool>& visited) {
     visited[getIndex(start)] = true;
