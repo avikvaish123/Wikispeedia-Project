@@ -16,7 +16,7 @@ bool sortByVal(const pair<string, int> &a,
 int main()
 {
 
-  Graph graph("dataset/articles.tsv", "dataset/links.tsv");
+  Graph graph("../dataset/articles.tsv", "../dataset/links.tsv");
 
   //initalize edges using adjacency list
   graph.initialize_graph();

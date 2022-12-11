@@ -38,7 +38,7 @@ private:
 
     int getIndex(Node* node);
 
-    void dfs(Node* start, vector<bool>& visited);
-    void fillOrder();
-    Graph transpose();
+    // void dfs(Node* start, vector<bool>& visited);
+    // void fillOrder();
+    // Graph transpose();
 };

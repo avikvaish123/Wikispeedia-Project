@@ -167,55 +167,55 @@ void Graph::push_back(Node *head, string article)
     current->next_ = temp;
 }
 
-Graph Graph::transpose() {
-    Graph ret();
-    for (size_t i = 0; i < this->vertices.size(); i++) {
-        //create a temp node with the vertex name
-        Node *temp = new Node();
-        temp->article_ = this->vertices.at(i)->article_;
-        //traverse through the rest of the vertices
-        for (size_t j = 0; j < this->vertices.size(); j++) {
-            if (i == j) {
-                continue;
-            }
-            //traverse through the neighbors of the other vertices
-            Node* current = this->vertices.at(j)->next_;
-            while (current != NULL) {
-                //if the temp node is a neighbor of one of the vertices
-                //add the vertex to the neighbors of the temp node
-                if (current->article_ == temp->article_) {
-                    push_back(temp, current->article_);
-                    break;
-                }
-            }
-        }
-        //after adding all the neighbors, repeat for every vertex in the graph
-        ret.vertices.push_back(temp);
-    }
-    return ret;
-}
+// Graph Graph::transpose() {
+//     Graph ret();
+//     for (size_t i = 0; i < this->vertices.size(); i++) {
+//         //create a temp node with the vertex name
+//         Node *temp = new Node();
+//         temp->article_ = this->vertices.at(i)->article_;
+//         //traverse through the rest of the vertices
+//         for (size_t j = 0; j < this->vertices.size(); j++) {
+//             if (i == j) {
+//                 continue;
+//             }
+//             //traverse through the neighbors of the other vertices
+//             Node* current = this->vertices.at(j)->next_;
+//             while (current != NULL) {
+//                 //if the temp node is a neighbor of one of the vertices
+//                 //add the vertex to the neighbors of the temp node
+//                 if (current->article_ == temp->article_) {
+//                     push_back(temp, current->article_);
+//                     break;
+//                 }
+//             }
+//         }
+//         //after adding all the neighbors, repeat for every vertex in the graph
+//         ret.vertices.push_back(temp);
+//     }
+//     return ret;
+// }
 
-void Graph::dfs(Node* start, vector<bool>& visited) {
-    visited[getIndex(start)] = true;
-    cout << start->article_ << ", ";
+// void Graph::dfs(Node* start, vector<bool>& visited) {
+//     visited[getIndex(start)] = true;
+//     cout << start->article_ << ", ";
 
-    Node* current = start->next_;
-    while (current != NULL) {
-        if (!visited[getIndex(current)]) {
-            dfs(current, visited);
-        }
-    }
-}
+//     Node* current = start->next_;
+//     while (current != NULL) {
+//         if (!visited[getIndex(current)]) {
+//             dfs(current, visited);
+//         }
+//     }
+// }
 
-int Graph::getIndex(Node* node) {
-    auto it = find(vertices.begin(), vertices.end(), node);
-    if (it != vertices.end()) {
-        return it - vertices.begin();
-    }   
-    return -1;
-}
+// int Graph::getIndex(Node* node) {
+//     auto it = find(vertices.begin(), vertices.end(), node);
+//     if (it != vertices.end()) {
+//         return it - vertices.begin();
+//     }   
+//     return -1;
+// }
 
-void fillOrder() {
+// void fillOrder() {
     
-}
+// }
 
