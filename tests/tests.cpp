@@ -5,13 +5,15 @@
 #include <time.h>
 #include <utility>
 #include <cmath>
+#include <map>
 
 #include "graph.hpp"
+#include "brandes.hpp"
 
 using namespace std;
 
 TEST_CASE("Load Graph", "[weight=1][part=1]") {
-    Graph testGraph("../tests/testNodes.tsv", "../tests/testLinks.tsv");
+    Graph testGraph("../tests/brandes_vert.tsv", "../tests/brandes_edges.tsv");
 
     testGraph.initialize_graph();
 
@@ -64,4 +66,21 @@ TEST_CASE("Simple BFS", "[weight=1][part=1]") {
     for (size_t j = 0; j < path.size(); j++) {
         REQUIRE(path[j] == correctPath[j]);
     }
+}
+
+
+TEST_CASE("Simple Brandes", "[weight=1][part=1]") {
+    Graph testGraph("../tests/brandes_vert.tsv", "../tests/brandes_edges.tsv");
+
+    testGraph.initialize_graph();
+
+    Brandes b;
+    map<string, int> map = b.calculate(testGraph);
+
+    REQUIRE(map["Node1"] == 0);
+    REQUIRE(map["Node2"] == 0);
+    REQUIRE(map["Node3"] == 6);
+    REQUIRE(map["Node4"] == 6);
+    REQUIRE(map["Node5"] == 0);
+    REQUIRE(map["Node6"] == 0);
 }
