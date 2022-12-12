@@ -118,7 +118,7 @@ TEST_CASE("Simple Brandes", "[weight=1][part=1]") {
     REQUIRE(map["Node3"] == 6);
     REQUIRE(map["Node4"] == 6);
     REQUIRE(map["Node5"] == 0);
-    REQUIRE(map["Node6"] == 0); 
+    REQUIRE(map["Node6"] == 0);    
 }
 
 
