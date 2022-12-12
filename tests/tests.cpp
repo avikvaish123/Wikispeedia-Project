@@ -177,6 +177,20 @@ TEST_CASE("Empty Brandes", "[weight=1][part=1]") {
     REQUIRE(brandes_out.size() == 0);
 }
 
+//Testing Brandes algorithm with no edges
+TEST_CASE("No Edges Brandes", "[weight=1][part=1]") {
+    Brandes b;
+    Graph graph("../tests/testNodes.tsv", "../tests/empty.tsv");
+    graph.initialize_graph();
+    map<string, int> brandes_out = b.calculate(graph);
+    REQUIRE(brandes_out["NodeA"] == 0);
+    REQUIRE(brandes_out["NodeB"] == 0);
+    REQUIRE(brandes_out["NodeC"] == 0);
+    REQUIRE(brandes_out["NodeD"] == 0);
+    REQUIRE(brandes_out["NodeE"] == 0);
+    REQUIRE(brandes_out["NodeF"] == 0);
+}
+
 //Performing Brandes algorithm on a simple graph
 TEST_CASE("Simple Brandes", "[weight=1][part=1]") {
     Graph testGraph("../tests/brandes_vert.tsv", "../tests/brandes_edges.tsv");
@@ -204,6 +218,28 @@ TEST_CASE("Empty Kosaraju", "[weight=1][part=1]") {
     vector<vector<string>> output = k.kosaraju(graph, graphTrans);
 
     REQUIRE(output.size() == 0);
+}
+
+//Testing Kosaraju's algorithm with no edges
+TEST_CASE("No Edges Kosaraju", "[weight=1][part=1]") {
+    Kosaraju k;
+    Graph graph("../tests/testNodes.tsv", "../tests/empty.tsv");
+    graph.initialize_graph();
+    vector<vector<string>> output = k.kosaraju(graph, graph);
+
+    vector<string> vecA{"NodeA"};
+    vector<string> vecB{"NodeB"};
+    vector<string> vecC{"NodeC"};
+    vector<string> vecD{"NodeD"};
+    vector<string> vecE{"NodeE"};
+    vector<string> vecF{"NodeF"};
+
+    REQUIRE(count(output.begin(), output.end(), vecA) != 0);
+    REQUIRE(count(output.begin(), output.end(), vecB) != 0);
+    REQUIRE(count(output.begin(), output.end(), vecC) != 0);
+    REQUIRE(count(output.begin(), output.end(), vecD) != 0);
+    REQUIRE(count(output.begin(), output.end(), vecE) != 0);
+    REQUIRE(count(output.begin(), output.end(), vecF) != 0);
 }
 
 //Testing Kosaraju's algorithm on a simple graph
