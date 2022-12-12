@@ -13,7 +13,7 @@ Wikispeedia from Stanford: http://snap.stanford.edu/data/wikispeedia.html
 5. Type "make"
 6. Type "./main"
 7. To run tests, type "./test"
-
+  
 ## After running:
 
 1. You will be prompted to enter the file names for edges and vertices
@@ -27,6 +27,12 @@ Wikispeedia from Stanford: http://snap.stanford.edu/data/wikispeedia.html
 One thing that you need to keep in mind is for Brandes's and Kosaraju's algorithm, the dataset has to be relatively small.
 On graphs with over 500 nodes, the algorithm will take too long and the program will stall, so we recommend that if you want
 to run those algorithms, do it on small graphs. BFS will work on large graphs because of the faster run time.
+
+### Organization
+- dataset - this folder includes all of the data from the Stanford website
+- entry - holds main.cpp for testing and to run ./main
+- src - contains our graph and all algorithms that we implemented (graph, brandes, kosaraju)
+- tests - all of our test cases as well as our smaller tsv files used for the small/medium cases
 
 ### Full Dataset
 - Edges: `../dataset/links.tsv`
