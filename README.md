@@ -12,8 +12,16 @@ To run the code in VSCode:
 6. Type "./main"
 7. To run tests, type "./test"
 
-TODOs right now:
+In the main program when you run:
 
-1. Brainstorm how to organize our algorithms into seperate classes
-2. Create tests for each algorithm
-3. Find most efficent way to store our vertices/edges (might be different for each algorithm)
+1. You will be prompted to enter the file names for edges and vertices
+    - We are assuming that the datasets and files you enter are correct and in tsv form
+2. Next, you will be prompted on which function you want to run
+    - BFS to find the shortest path between two nodes
+    - Brandes to find the centrality score of a node
+    - Kosaraju's to find which other nodes are a part of the same strongly connected component
+3. Once you enter the function and the necessary inputs, you will receive your result
+
+One thing that you need to keep in mind is for Brandes and Kosaraju's algorithm, the dataset has to be relatively small.
+On graphs with over 500 nodes, the algorithm will take too long and the program will stall, so we recommend that if you want
+to run those algorithms, do it on small graphs. BFS will work on large graphs because of the faster run time.
