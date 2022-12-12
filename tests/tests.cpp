@@ -76,7 +76,7 @@ TEST_CASE("Simple BFS", "[weight=1][part=1]") {
 }
 
 //BFS to itself
-TEST_CASE("Simple BFS 2", "[weight=1][part=1]") {
+TEST_CASE("Simple BFS onto itself", "[weight=1][part=1]") {
     Graph graph("../tests/testNodes.tsv", "../tests/testLinks.tsv");
 
     graph.initialize_graph();
@@ -91,13 +91,13 @@ TEST_CASE("Simple BFS 2", "[weight=1][part=1]") {
         startingNode = vertices.at(i);
         }
         //Ending Node
-        if (vertices.at(i)->article_ == "NodeF") {
+        if (vertices.at(i)->article_ == "NodeA") {
         endingNode = vertices.at(i);
         }
     }
 
     vector<string> path = graph.bfs(startingNode, endingNode);
-    vector<string> correctPath{"NodeA", "NodeC", "NodeF"};
+    vector<string> correctPath{"NodeA", "NodeC", "NodeF", "NodeA"};
 
     for (size_t j = 0; j < path.size(); j++) {
         REQUIRE(path[j] == correctPath[j]);
@@ -118,5 +118,7 @@ TEST_CASE("Simple Brandes", "[weight=1][part=1]") {
     REQUIRE(map["Node3"] == 6);
     REQUIRE(map["Node4"] == 6);
     REQUIRE(map["Node5"] == 0);
-    REQUIRE(map["Node6"] == 0);
+    REQUIRE(map["Node6"] == 0);    
 }
+
+
