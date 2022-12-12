@@ -22,6 +22,15 @@ TEST_CASE("Load Graph", "[weight=1][part=1]") {
     REQUIRE(testGraph.getVertices().size() == 6);
 }
 
+//Test data loading and vertex loading with the full dataset
+TEST_CASE("Load Graph Complex", "[weight=1][part=1]") {
+    Graph graph("../dataset/articles.tsv", "../dataset/links.tsv");
+
+    graph.initialize_graph();
+
+    REQUIRE(graph.getVertices().size() == 4604);
+}
+
 //Test to make sure that edges are properly loaded
 TEST_CASE("Test Graph for Edges", "[weight=1][part=1]") {
     Graph graph("../tests/testNodes.tsv", "../tests/testLinks.tsv");
@@ -104,6 +113,60 @@ TEST_CASE("Simple BFS onto itself", "[weight=1][part=1]") {
     }
 }
 
+//Performing a complex BFS on a known section of the dataset
+TEST_CASE("Complex BFS", "[weight=1][part=1]") {
+    Graph graph("../tests/medium_vert.tsv", "../tests/medium_links.tsv");
+
+    graph.initialize_graph();
+
+    vector<Graph::Node*> vertices = graph.getVertices();
+    Graph::Node* startingNode;
+    Graph::Node* endingNode;
+
+    for (size_t i = 0; i < vertices.size(); i++) {
+        //Starting Node
+        if (vertices.at(i)->article_ == "Africa") {
+        startingNode = vertices.at(i);
+        }
+        //Ending Node
+        if (vertices.at(i)->article_ == "Argentina") {
+        endingNode = vertices.at(i);
+        }
+    }
+
+    vector<string> path = graph.bfs(startingNode, endingNode);
+    vector<string> correctPath{"Africa", "Atlantic_Ocean", "Argentina"};
+
+    for (size_t j = 0; j < path.size(); j++) {
+        REQUIRE(path[j] == correctPath[j]);
+    }
+}
+
+//BFS between 2 nodes that are not connected
+TEST_CASE("No path exists BFS", "[weight=1][part=1]") {
+    Graph graph("../tests/medium_vert.tsv", "../tests/medium_links.tsv");
+
+    graph.initialize_graph();
+
+    vector<Graph::Node*> vertices = graph.getVertices();
+    Graph::Node* startingNode;
+    Graph::Node* endingNode;
+
+    for (size_t i = 0; i < vertices.size(); i++) {
+        //Starting Node
+        if (vertices.at(i)->article_ == "Australian_rules_football") {
+        startingNode = vertices.at(i);
+        }
+        //Ending Node
+        if (vertices.at(i)->article_ == "Avatar__The_Last_Airbender") {
+        endingNode = vertices.at(i);
+        }
+    }
+
+    vector<string> path = graph.bfs(startingNode, endingNode);
+    REQUIRE(path.size() == 0);
+}
+
 //Performing Brandes algorithm on a simple graph
 TEST_CASE("Simple Brandes", "[weight=1][part=1]") {
     Graph testGraph("../tests/brandes_vert.tsv", "../tests/brandes_edges.tsv");
@@ -120,5 +183,3 @@ TEST_CASE("Simple Brandes", "[weight=1][part=1]") {
     REQUIRE(map["Node5"] == 0);
     REQUIRE(map["Node6"] == 0);    
 }
-
-
