@@ -1,8 +1,10 @@
 # CS225FinalProject
 
+## Original Data Source
+
 Wikispeedia from Stanford: http://snap.stanford.edu/data/wikispeedia.html
 
-To run the code in VSCode:
+## To run the code in VSCode:
 
 1. Go to the parent directory
 2. Type "mkdir build"
@@ -12,7 +14,7 @@ To run the code in VSCode:
 6. Type "./main"
 7. To run tests, type "./test"
 
-In the main program when you run:
+## After running:
 
 1. You will be prompted to enter the file names for edges and vertices
     - We are assuming that the datasets and files you enter are correct and in tsv form
