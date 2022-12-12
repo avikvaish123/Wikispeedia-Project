@@ -8,6 +8,10 @@ map<string, int> Brandes::calculate(Graph graph) {
     vector<Graph::Node*> vertices = graph.getVertices();
 
     map<string, int> visited;
+    if (vertices.size() == 0) {
+        return visited;
+    }
+    
     for (size_t i = 0; i < vertices.size(); i++) {
         visited[vertices.at(i)->article_] = 0;
     }

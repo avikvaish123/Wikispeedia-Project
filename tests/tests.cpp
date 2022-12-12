@@ -6,6 +6,7 @@
 #include <utility>
 #include <cmath>
 #include <map>
+#include <algorithm>
 
 #include "graph.hpp"
 #include "brandes.hpp"
@@ -167,6 +168,15 @@ TEST_CASE("No path exists BFS", "[weight=1][part=1]") {
     REQUIRE(path.size() == 0);
 }
 
+//Testing Brandes algorithm on an empty graph
+TEST_CASE("Empty Brandes", "[weight=1][part=1]") {
+    Brandes b;
+    Graph brandes_graph("../tests/empty.tsv", "../tests/empty.tsv");
+    brandes_graph.initialize_graph();
+    map<string, int> brandes_out = b.calculate(brandes_graph);
+    REQUIRE(brandes_out.size() == 0);
+}
+
 //Performing Brandes algorithm on a simple graph
 TEST_CASE("Simple Brandes", "[weight=1][part=1]") {
     Graph testGraph("../tests/brandes_vert.tsv", "../tests/brandes_edges.tsv");
@@ -182,4 +192,33 @@ TEST_CASE("Simple Brandes", "[weight=1][part=1]") {
     REQUIRE(map["Node4"] == 6);
     REQUIRE(map["Node5"] == 0);
     REQUIRE(map["Node6"] == 0);    
+}
+
+//Testing Kosaraju's algorithm on an empty graph
+TEST_CASE("Empty Kosaraju", "[weight=1][part=1]") {
+    Kosaraju k;
+    Graph graph("../tests/empty.tsv", "../tests/empty.tsv");
+    Graph graphTrans("../tests/empty.tsv", "../tests/empty.tsv");
+    graph.initialize_graph();
+    graphTrans.transpose_graph();
+    vector<vector<string>> output = k.kosaraju(graph, graphTrans);
+
+    REQUIRE(output.size() == 0);
+}
+
+//Testing Kosaraju's algorithm on a simple graph
+TEST_CASE("Simple Kosaraju", "[weight=1][part=1]") {
+    Kosaraju k;
+    Graph graph("../tests/kosa_vert.tsv", "../tests/kosa_edges.tsv");
+    Graph graphTrans("../tests/kosa_vert.tsv", "../tests/kosa_edges.tsv");
+    graph.initialize_graph();
+    graphTrans.transpose_graph();
+    vector<vector<string>> output = k.kosaraju(graph, graphTrans);
+
+    REQUIRE(count(output[0].begin(), output[0].end(), "Node0") != 0);
+    REQUIRE(count(output[0].begin(), output[0].end(), "Node1") != 0);
+    REQUIRE(count(output[0].begin(), output[0].end(), "Node2") != 0);
+    REQUIRE(count(output[1].begin(), output[1].end(), "Node3") != 0);
+    REQUIRE(count(output[2].begin(), output[2].end(), "Node4") != 0);
+    
 }

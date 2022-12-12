@@ -9,12 +9,6 @@
 
 using namespace std;
 
-bool sortByVal(const pair<string, int> &a, 
-               const pair<string, int> &b) 
-{ 
-    return (a.second > b.second); 
-} 
-
 int main()
 {
   string inputEdges;
@@ -203,6 +197,5 @@ int main()
   // cout << vertices.size() << endl;
   // graph.printGraph();
   
-
   return 0;
 }
