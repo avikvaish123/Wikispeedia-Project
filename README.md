@@ -25,3 +25,11 @@ In the main program when you run:
 One thing that you need to keep in mind is for Brandes's and Kosaraju's algorithm, the dataset has to be relatively small.
 On graphs with over 500 nodes, the algorithm will take too long and the program will stall, so we recommend that if you want
 to run those algorithms, do it on small graphs. BFS will work on large graphs because of the faster run time.
+
+### Full Dataset
+- Edges: `../dataset/links.tsv`
+- Vertices: `../dataset/articles.tsv`
+
+### Small Dataset
+- Edges: `../tests/medium_links.tsv`
+- Vertices: `../tests/medium_vert.tsv`
