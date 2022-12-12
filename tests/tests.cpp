@@ -13,15 +13,16 @@
 
 using namespace std;
 
+//Test data loading and vertex loading
 TEST_CASE("Load Graph", "[weight=1][part=1]") {
-    Graph testGraph("../tests/kosa_vert.tsv", "../tests/kosa_edges.tsv");
+    Graph testGraph("../tests/testNodes.tsv", "../tests/testLinks.tsv");
 
     testGraph.initialize_graph();
-    testGraph.printGraph();
 
     REQUIRE(testGraph.getVertices().size() == 6);
 }
 
+//Test to make sure that edges are properly loaded
 TEST_CASE("Test Graph for Edges", "[weight=1][part=1]") {
     Graph graph("../tests/testNodes.tsv", "../tests/testLinks.tsv");
 
@@ -36,12 +37,16 @@ TEST_CASE("Test Graph for Edges", "[weight=1][part=1]") {
     REQUIRE(testNode->article_ == "NodeC");
 }
 
-TEST_CASE("Empty Graph BFS", "[weight=1][part=1]") {
+//Initializing an empty graph
+TEST_CASE("Empty Graph Loading", "[weight=1][part=1]") {
     Graph graph("../tests/empty.tsv", "../tests/empty.tsv");
 
     graph.initialize_graph();
+
+    REQUIRE(graph.getVertices().size() == 0);
 }
 
+//Performing a simple BFS on a known graph
 TEST_CASE("Simple BFS", "[weight=1][part=1]") {
     Graph graph("../tests/testNodes.tsv", "../tests/testLinks.tsv");
 
@@ -70,7 +75,36 @@ TEST_CASE("Simple BFS", "[weight=1][part=1]") {
     }
 }
 
+//BFS to itself
+TEST_CASE("Simple BFS 2", "[weight=1][part=1]") {
+    Graph graph("../tests/testNodes.tsv", "../tests/testLinks.tsv");
 
+    graph.initialize_graph();
+
+    vector<Graph::Node*> vertices = graph.getVertices();
+    Graph::Node* startingNode;
+    Graph::Node* endingNode;
+
+    for (size_t i = 0; i < vertices.size(); i++) {
+        //Starting Node
+        if (vertices.at(i)->article_ == "NodeA") {
+        startingNode = vertices.at(i);
+        }
+        //Ending Node
+        if (vertices.at(i)->article_ == "NodeF") {
+        endingNode = vertices.at(i);
+        }
+    }
+
+    vector<string> path = graph.bfs(startingNode, endingNode);
+    vector<string> correctPath{"NodeA", "NodeC", "NodeF"};
+
+    for (size_t j = 0; j < path.size(); j++) {
+        REQUIRE(path[j] == correctPath[j]);
+    }
+}
+
+//Performing Brandes algorithm on a simple graph
 TEST_CASE("Simple Brandes", "[weight=1][part=1]") {
     Graph testGraph("../tests/brandes_vert.tsv", "../tests/brandes_edges.tsv");
 
