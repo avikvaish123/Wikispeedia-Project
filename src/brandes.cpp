@@ -16,7 +16,7 @@ map<string, int> Brandes::calculate(Graph graph) {
         for (size_t j = 1 + i; j < vertices.size(); j++) {
             Graph::Node* starting = vertices.at(i);
             Graph::Node* ending = vertices.at(j);
-            cout << "Vertex " << i << " Test " << j << " : " << starting->article_ << " -> " << ending->article_ << endl;
+            // cout << "Vertex " << i << " Test " << j << " : " << starting->article_ << " -> " << ending->article_ << endl;
             vector<string> shortest_path = graph.bfs(starting, ending);
             if (shortest_path.size() == 0) {
                 continue;
@@ -24,7 +24,7 @@ map<string, int> Brandes::calculate(Graph graph) {
             for (size_t k = 1; k < shortest_path.size() - 1; k++) {
                 string current_article = shortest_path.at(k);
                 visited[current_article] = visited[current_article] + 1;
-                cout << "\t\t" << current_article << " " << visited[current_article] << endl;
+                // cout << "\t\t" << current_article << " " << visited[current_article] << endl;
             }
         }
     }

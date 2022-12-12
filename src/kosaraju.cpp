@@ -65,7 +65,7 @@ vector<vector<string>> Kosaraju::kosaraju(Graph graph, Graph transposed) {
         if(!visited[it->first]) {
             cft(it->first, map, visited, stack);
         }
-        cout << "Finished CFT for: " << it->first << endl;
+        // cout << "Finished CFT for: " << it->first << endl;
     }
 
     visited.clear();
@@ -79,7 +79,7 @@ vector<vector<string>> Kosaraju::kosaraju(Graph graph, Graph transposed) {
             vector<string> scc;
             dfs(temp, transposed_map, visited, scc);
             sccs.push_back(scc);
-            cout << "Finished DFS for: " << temp << endl;
+            // cout << "Finished DFS for: " << temp << endl;
         }
     }
     
