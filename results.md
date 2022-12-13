@@ -18,10 +18,14 @@ We used Brandes's Algorithm to calculate the betweenness centrality of different
 
 In order to verify this algorithm, we created smaller known graphs and manually computed the centrality score for each node in the graph. We then compared the algorithm's values with our manually computed values to ensure they were identical. We also tested to make sure that empty graphs and graphs with no edges would work.
 
-The main challenge we faced with Brandes's algorithm is the runtime due to our large dataset. The runtime of Brandes's on a directed, unweighted graph is O(VE), and since we have 4604 nodes and 119882 edges, the runtime became a huge problem. We solved this by simplifying our dataset down to 361 nodes and 923 edges. On this simplified dataset, computing the centrality score of a node takes 1-2 minutes, instead of hours.
+The main challenge we faced with Brandes's algorithm is the runtime due to our large dataset. The runtime of Brandes's on our implementation is O(V^3), and since we have 4604 nodes and 119882 edges, the runtime became a huge problem. We solved this by simplifying our dataset down to 361 nodes and 923 edges. On this simplified dataset, computing the centrality score of a node takes 1-2 minutes, instead of days.
 
 ## Kosaraju's Algorithm
 
 We used Kosaraju's Algorithm to find the strongly connected components of our dataset. A strongly connected component means that every node in the component is accessible from every other node in the component. This is useful for us because if nodes are not accessible from each other, we cannot generate a BFS path. Our implementation of Kosaraju's ... For example, if the user requested the strongly connected component that contains `Argentina` on our modified dataset, the program will print:
 
 `Andes, Armadillo, Argentina`
+
+In order to verify the algorithm, we applied the same technique as Brandes's and created smaller known graphs with strongly connected components and ran the algorithm on them to verify that the output was correct. We also tested the algorithm on an empty graph and a graph with no edges.
+
+The most difficult part of implementing Kosaraju's algorithm was creating a method for transposing a graph. Because of how our graph is stored, it is very diffuclt to perform an in-place transposition. We solved this problem by taking advantage of how our edge data is input. Since there are just 2 columns in the file, by switching the columns we can reuse our graph initialization code and just create a graph where all edges are reversed.
