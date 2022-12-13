@@ -188,6 +188,13 @@ void Graph::transpose_graph() {
 // E.g. {Node2, Node5, Node3} <- Would be the shortest path between Node2 and Node3
 vector<string> Graph::bfs(Node* startingNode, Node* endingNode) {
 
+    // Check to make sure that both nodes exist
+    if (startingNode == NULL || endingNode == NULL) {
+        vector<string> path;
+        path.push_back("One or more nodes does not exist");
+        return path;
+    }
+
     // Create a queue that holds all the neighbors
     // Push the starting node to the queue
     queue<Node*> queue;

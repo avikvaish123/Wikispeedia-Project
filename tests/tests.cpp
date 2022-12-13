@@ -56,6 +56,18 @@ TEST_CASE("Empty Graph Loading", "[weight=1][part=1]") {
     REQUIRE(graph.getVertices().size() == 0);
 }
 
+//Performing BFS from a node that doesn't exist
+TEST_CASE("Nonexistent Node", "[weight=1][part=1]") {
+    Graph graph("../tests/testNodes.tsv", "../tests/testLinks.tsv");
+
+    graph.initialize_graph();
+    Graph::Node* startingNode = NULL;
+    Graph::Node* endingNode = NULL;
+
+    vector<string> path = graph.bfs(startingNode, endingNode);
+    REQUIRE(path[0] == "One or more nodes does not exist");
+}
+
 //Performing a simple BFS on a known graph
 TEST_CASE("Simple BFS", "[weight=1][part=1]") {
     Graph graph("../tests/testNodes.tsv", "../tests/testLinks.tsv");
