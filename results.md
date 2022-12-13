@@ -22,7 +22,7 @@ The main challenge we faced with Brandes's algorithm is the runtime due to our l
 
 ## Kosaraju's Algorithm
 
-We used Kosaraju's Algorithm to find the strongly connected components of our dataset. A strongly connected component means that every node in the component is accessible from every other node in the component. This is useful for us because if nodes are not accessible from each other, we cannot generate a BFS path. Our implementation of Kosaraju's ... For example, if the user requested the strongly connected component that contains `Argentina` on our modified dataset, the program will print:
+We used Kosaraju's Algorithm to find the strongly connected components of our dataset. A strongly connected component means that every node in the component is accessible from every other node in the component. This is useful for us because if nodes are not accessible from each other, we cannot generate a BFS path. Our implementation of Kosaraju's performs a Depth-First-Search on all the nodes in the graph and computes which nodes finish traversing in which order. Then after reversing the graph, we perform another Depth-First-Search on the graph in the order that the nodes finished in the first DFS. When the DFS is traversing, it adds all the nodes in it's path to a vector of Nodes that is the strongly connected component. At the end, we return all the strongly connected components in the graph. For example, if the user requested the strongly connected component that contains `Argentina` on our modified dataset, the program will print:
 
 `Andes, Armadillo, Argentina`
 
