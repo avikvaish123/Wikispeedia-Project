@@ -101,7 +101,7 @@ int main()
     for (size_t i = 0; i < output.size(); i++) {
       cout << output[i];
       if (i < output.size() - 1) {
-        cout << " , ";
+        cout << ", ";
       }
     }
     cout << endl;

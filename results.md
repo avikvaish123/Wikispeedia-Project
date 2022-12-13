@@ -21,3 +21,7 @@ In order to verify this algorithm, we created smaller known graphs and manually 
 The main challenge we faced with Brandes's algorithm is the runtime due to our large dataset. The runtime of Brandes's on a directed, unweighted graph is O(VE), and since we have 4604 nodes and 119882 edges, the runtime became a huge problem. We solved this by simplifying our dataset down to 361 nodes and 923 edges. On this simplified dataset, computing the centrality score of a node takes 1-2 minutes, instead of hours.
 
 ## Kosaraju's Algorithm
+
+We used Kosaraju's Algorithm to find the strongly connected components of our dataset. A strongly connected component means that every node in the component is accessible from every other node in the component. This is useful for us because if nodes are not accessible from each other, we cannot generate a BFS path. Our implementation of Kosaraju's ... For example, if the user requested the strongly connected component that contains `Argentina` on our modified dataset, the program will print:
+
+`Andes, Armadillo, Argentina`
